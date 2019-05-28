@@ -1,103 +1,73 @@
-package com.almacenea.autenticacion.DAO;
+/*package com.almacenea.autenticacion.DAO;
 
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.almacenea.autenticacion.modelo.Usuario;Usuario;
-import com.mongo.db;
-import com.mongodb.BasicDBObjectBuilder;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
+
+import com.almacenea.autenticacion.modelo.Usuario;
 import com.mongodb.MongoClient;
 
 public class UsuariosDAO {
 
 	private MongoClient conexion;
-	private DB db;
-	private DBCollection coleccion;
-	
-	public List<Usuario> consultarTodos(){
-		List<Usuario> lista = new ArrayList<>();
-		
-		try {
-			abrirConexion();
-			DBCursor rs = coleccion.find();
-			while (rs.hasNext()) {
-				BasicDBObject json = (BasicDBObject) rs.next();
-				lista.add(new Usuario(json.getInt("id"), 
-						json.getString("nombre"), 
-						json.getString("apellidos"), 
-						json.getString("dni"), 
-						json.getInt("numContacto"), 
-						json.getString("email"),  
-						json.getBoolean("alias")));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			cerrarConexion();
-		}
-		
-		return lista;
-	}
-	
-	public void insertar(Usuario nuevo) {
-		try {
-			abrirConexion();
-			
-			// Construir el objeto JSON
-			BasicDBObjectBuilder docBuilder = BasicDBObjectBuilder.start();
-			docBuilder.append("_id", nuevo.getId());
-			docBuilder.append("nombre", nuevo.getNombre());
-			docBuilder.append("apellidos", nuevo.getApellidos());
-			docBuilder.append("dni", nuevo.getDni());
-			docBuilder.append("numContacto", nuevo.getNumContacto());
-			docBuilder.append("email", nuevo.getEmail());
-			docBuilder.append("alias", nuevo.getAliasUsuario());
-			
-			// Obtenemos el documento
-			DBObject documento = docBuilder.get();
-			
-			// Insertamos en la coleccion
-			coleccion.insert(documento);
-			
-		}catch(Exception ex) {
-			ex.printStackTrace();	
-		}finally {
-			cerrarConexion();
-		}
-		
-	}
-	
-	public void inicio() throws UnknownHostException {
-		abrirConexion();
-		crearColeccion();
-	}
-	
-	private void crearColeccion() {
-		// Tabla -> Coleccion
-		// Registro -> Documento
-		coleccion = db.getCollection("usuarios");
+	private MongoOperations opMongo;
+
+	public void eliminarUsuario(int id) {
+		//inicio();
+		Usuario usuario = opMongo.findById(id, Usuario.class);
+		opMongo.remove(usuario);
+		cerrarConexion();
 	}
 
-	private void abrirConexion() throws UnknownHostException {
-		// Abre la conedxion en el servidor y puerto predeterminado
-		conexion = new MongoClient("localhost",27017);
-//		conexion = new MongoClient("OtroHost");
-//		conexion = new MongoClient("OtroHost", 99999);
-//		conexion = new MongoClient(Arrays.asList(new ServerAddress("Host1", 90), new ServerAddress("Host2", 91),
-//				new ServerAddress("Host3", 92)));
-		
-		// Conectamos con la base de datos
-		db = conexion.getDB("usuariosDB");
-		
+	public void modificarUsuario(int id, String nuevoAlias) {
+		//inicio();
+		Query query = new Query();
+		query.addCriteria(Criteria.where("_id").is(id));
+		Update update = new Update();
+		update.set("aliasUsuario", nuevoAlias);
+		opMongo.updateFirst(query, update, Usuario.class);
+		cerrarConexion();
+	}
+
+	public Usuario buscarUsuario(int id) {
+		//inicio();
+		Usuario usuario = opMongo.findById(id, Usuario.class); 
+		cerrarConexion();	
+		return usuario;
+	}
+
+	public List<Usuario> consultarTodos() {		
+		inicio();
+		List<Usuario> lista = opMongo.findAll(Usuario.class);
+		cerrarConexion();
+		return lista;
+	}
+
+	public void insertar(Usuario nuevo) {
+		inicio();
+		opMongo.insert(nuevo);
+		cerrarConexion();
+	}
+
+	public void inicio() {
+		try {
+			conexion = new MongoClient("localhost", 27017);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+
+		// obtener la plantilla de Mongo
+		opMongo = new MongoTemplate(conexion, "usuariosDB");
 	}
 
 	private void cerrarConexion() {
 		conexion.close();
 	}
 
-}
+}*/
+

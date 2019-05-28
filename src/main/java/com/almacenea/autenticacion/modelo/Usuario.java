@@ -20,17 +20,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 
-@Data
+/*@Data
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor*/
 @Entity
 @Table(name="USUARIOS")
 @XmlRootElement
-@NamedQueries({
-	@NamedQuery(name="Usuario.findAll",query="select u from Usuarios u"),
-	@NamedQuery(name="sexoSQL",query="select p from Persona p where p.sexo = :sexo"),
+/*@NamedQueries({
+	//@NamedQuery(name="Usuario.findAll",query="select u from Usuarios u"),
+	//@NamedQuery(name="sexoSQL",query="select p from Persona p where p.sexo = :sexo"),
 	//@NamedQuery(name="")
-})
+})*/
 public class Usuario implements Serializable {
 
 	/**
@@ -41,26 +41,100 @@ public class Usuario implements Serializable {
 	@Column(name = "ID_USER")
 	@NotNull
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private int id;
+	private String id;
 	@Column(name = "NOMBRE")
 	private String nombre;
 	@Column(name = "APELLIDOS")
 	private String apellidos;
 	@Column(name = "DNI")
 	@NotNull
-	@Size(min = 10, max = 10)
+	//@Size(min = 9, max = 10)
 	private String dni;
 	@Column(name = "NUMERO_CONTACTO")
-	@Size(min = 9, max = 9)
+	//@Size(min = 9, max = 9)
 	private int numContacto;
 	@Column(name = "EMAIL")
-	@Size(max = 20)
+	//@Size(max = 30)
 	private String email;
 	@Column(name = "ALIAS")
-	@Size(min = 5, max = 10)
+	//@Size(max = 30)
 	private String aliasUsuario;
 	
+	public Usuario() {
+		}
 	
+	public Usuario(String id) {
+		super();
+		this.id = id;
+	}
+	public Usuario(String id, String nombre, String apellidos, String dni,
+	int numContacto, String email,
+			String aliasUsuario) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.dni = dni;
+		this.numContacto = numContacto;
+		this.email = email;
+		this.aliasUsuario = aliasUsuario;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public int getNumContacto() {
+		return numContacto;
+	}
+
+	public void setNumContacto(int numContacto) {
+		this.numContacto = numContacto;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAliasUsuario() {
+		return aliasUsuario;
+	}
+
+	public void setAliasUsuario(String aliasUsuario) {
+		this.aliasUsuario = aliasUsuario;
+	}
 
 	@Override
 	public String toString() {
