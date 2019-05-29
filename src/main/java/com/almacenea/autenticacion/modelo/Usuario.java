@@ -26,11 +26,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name="USUARIOS")
 @XmlRootElement
-/*@NamedQueries({
-	//@NamedQuery(name="Usuario.findAll",query="select u from Usuarios u"),
-	//@NamedQuery(name="sexoSQL",query="select p from Persona p where p.sexo = :sexo"),
-	//@NamedQuery(name="")
-})*/
 public class Usuario implements Serializable {
 
 	/**
@@ -48,16 +43,16 @@ public class Usuario implements Serializable {
 	private String apellidos;
 	@Column(name = "DNI")
 	@NotNull
-	//@Size(min = 9, max = 10)
+	@Size(min = 9, max = 10)
 	private String dni;
 	@Column(name = "NUMERO_CONTACTO")
-	//@Size(min = 9, max = 9)
+	@Size(min = 9, max = 9)
 	private int numContacto;
 	@Column(name = "EMAIL")
-	//@Size(max = 30)
+	@Size(max = 30)
 	private String email;
 	@Column(name = "ALIAS")
-	//@Size(max = 30)
+	@Size(max = 30)
 	private String aliasUsuario;
 	
 	public Usuario() {
