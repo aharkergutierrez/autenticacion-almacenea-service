@@ -26,19 +26,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @AllArgsConstructor*/
 @Entity
-@Table(name="USUARIOS")
+@Table(name="USUARIOS2")
 @XmlRootElement
 /*@NamedQueries({
 	//@NamedQuery(name="Usuario.findAll",query="select u from Usuarios u"),
 	//@NamedQuery(name="Usuario.delete",query="delete p from Usuario u where u.id = :id"),
 	//@NamedQuery(name="")
 })*/
-public class Usuario implements Serializable {
+public class Usuario2 implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5598447667872520203L;
+
 	@Id
 	@Column(name="ID_USER")
 	@NotNull
@@ -63,10 +60,10 @@ public class Usuario implements Serializable {
 	@Size(max = 30)
 	private String aliasUsuario;
 	
-	public Usuario() {
+	public Usuario2() {
 		}
 	
-	public Usuario(String nombre, String apellidos, String dni,int numContacto, String email,
+	public Usuario2(String nombre, String apellidos, String dni,int numContacto, String email,
 			String aliasUsuario) {
 		super();
 		this.nombre = nombre;

@@ -1,4 +1,4 @@
-/*package com.almacenea.autenticacion.DAO;
+package com.almacenea.autenticacion.DAO;
 
 import java.net.UnknownHostException;
 import java.util.List;
@@ -17,15 +17,15 @@ public class UsuariosDAO {
 	private MongoClient conexion;
 	private MongoOperations opMongo;
 
-	public void eliminarUsuario(int id) {
-		//inicio();
+	public void eliminarUsuario(Integer id) {
+		inicio();
 		Usuario usuario = opMongo.findById(id, Usuario.class);
 		opMongo.remove(usuario);
 		cerrarConexion();
 	}
 
-	public void modificarUsuario(int id, String nuevoAlias) {
-		//inicio();
+	public void modificarUsuario(Integer id, String nuevoAlias) {
+		inicio();
 		Query query = new Query();
 		query.addCriteria(Criteria.where("_id").is(id));
 		Update update = new Update();
@@ -34,8 +34,8 @@ public class UsuariosDAO {
 		cerrarConexion();
 	}
 
-	public Usuario buscarUsuario(int id) {
-		//inicio();
+	public Usuario buscarUsuario(Integer id) {
+		inicio();
 		Usuario usuario = opMongo.findById(id, Usuario.class); 
 		cerrarConexion();	
 		return usuario;
@@ -69,5 +69,5 @@ public class UsuariosDAO {
 		conexion.close();
 	}
 
-}*/
+}
 

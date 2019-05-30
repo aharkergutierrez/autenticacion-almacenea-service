@@ -11,10 +11,17 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Almacenea?serverTimezone=UTC"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
 			<property name="javax.persistence.jdbc.password" value="rootroot"/>
-			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
 		</properties>
+		<!--<properties>
+        	<property name="javax.persistence.jdbc.url" value="${autenticacion.relational.urlconnection}"/>
+     	 	<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+      		<property name="javax.persistence.jdbc.user" value="aharker"/>
+      		<property name="javax.persistence.jdbc.password" value="aharker"/>
+      		<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+    	</properties>-->
 	</persistence-unit>
 	
 </persistence>

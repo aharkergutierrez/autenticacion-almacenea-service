@@ -15,11 +15,11 @@ public class appMain {
 		//Obtener el EntityManager(conexion)
 		EntityManager em = emf.createEntityManager();
 
-		Usuario usuario1 = new Usuario("1", "Carlos", "Romero", "51648885-A", 684757894, "carlos@almacenea.com", "Carlangas");
-		Usuario usuario2 = new Usuario("2", "German", "Tequilla","52569742-B", 658745987, "germa@almacenea.com", "German-15");
-		Usuario usuario3 = new Usuario("3", "Mariano", "Ticias", "32547859-C", 612354879, "mariano@almacenea.com", "Mariano66");
-		Usuario usuario4 = new Usuario("4", "Chema", "Pamundi", "21547854-D", 632614728, "chema@almacenea.com", "Chemita");
-		Usuario usuario5 = new Usuario("5", "Gema", "Castillo", "12478593-E", 612914357, "gema@almacenea.com", "Gemita_29");
+		Usuario usuario1 = new Usuario("Carlos", "Romero", "51648885-A", 684757894, "carlos@almacenea.com", "Carlangas");
+		Usuario usuario2 = new Usuario("German", "Tequilla","52569742-B", 658745987, "germa@almacenea.com", "German-15");
+		Usuario usuario3 = new Usuario("Mariano", "Ticias", "32547859-C", 612354879, "mariano@almacenea.com", "Mariano66");
+		Usuario usuario4 = new Usuario("Chema", "Pamundi", "21547854-D", 632614728, "chema@almacenea.com", "Chemita");
+		Usuario usuario5 = new Usuario("Gema", "Castillo", "12478593-E", 612914357, "gema@almacenea.com", "Gemita_29");
 	
 	
 	EntityTransaction tx = em.getTransaction();
